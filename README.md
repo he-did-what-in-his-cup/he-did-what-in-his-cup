@@ -1,5 +1,5 @@
 # he did what in his cup?
-Stanley
+
 
 Links:
 
@@ -22,4 +22,4 @@ https://docs.robomationlab.com/en/roboids/Beagle.html
 Ps: Beagle connection is by dongle, when from robomation import *, then beagle = Beagle(0), the connection is automatic
 
 Robomation Blockcode Interface
-https://blockcomposer.robomationlab.com/
+https://blockcomposer.robomationlab.com/ 

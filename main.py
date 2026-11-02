@@ -1,11 +1,25 @@
 from robomation import *
-import warnings
 
-warnings.filterwarnings("ignore", category=FutureWarning)
+beagle = Beagle(0)
+
+past_distance = 0
+# put setup code here, to run once:
+def setup():
+	beagle.lidar_power(True)
 
 
-color_detection = ColorDetection(0)
-color_detection.device('MJPEG')
-color_detection.display(True)
+# put control code here, to run repeatedly:
+def loop():
+	global past_distance
+	distance = beagle.lidar_directions('front') # in millimeters
+	if distance != past_distance:
+		print(distance)
+		past_distance = distance
 
+        
+setup()
+past_distance = 0
+while True:
+	beagle.move_distance
+	loop()
 
