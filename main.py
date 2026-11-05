@@ -1,8 +1,13 @@
 from robomation import *
+import func
 
 beagle = Beagle(0)
 
-past_distance = 0
+accer = 100 # wheel speed is -100 to 100
+
+lp_dist = 0
+rp_dist = 0
+distance = 0
 # put setup code here, to run once:
 def setup():
 	beagle.lidar_power(True)
@@ -10,16 +15,15 @@ def setup():
 
 # put control code here, to run repeatedly:
 def loop():
-	global past_distance
-	distance = beagle.lidar_directions('front') # in millimeters
-	if distance != past_distance:
-		print(distance)
-		past_distance = distance
-
+	global distance
+	dist = beagle.lidar_directions('front')
+	print(func.not_repeat_dist(dist, distance))
+	# beagle.move_distance(10, 'cm', False)
+	if dist <= 500:
+		func.in_place_turn(beagle)
+	
         
 setup()
-past_distance = 0
 while True:
-	beagle.move_distance
 	loop()
 
