@@ -16,10 +16,10 @@ get the address
 
 download ip camera adapter
 
-Beagle Robot Documentation 
+Beagle Robot Documentation: 
 https://docs.robomationlab.com/en/roboids/Beagle.html
 
 Ps: Beagle connection is by dongle, when from robomation import *, then beagle = Beagle(0), the connection is automatic
 
-Robomation Blockcode Interface
+Robomation Blockcode Interface: 
 https://blockcomposer.robomationlab.com/ 
