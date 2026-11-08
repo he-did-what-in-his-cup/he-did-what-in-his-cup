@@ -1,0 +1,25 @@
+Functions
+
+get_dists
+
+gets the distance away from the 0 degree (front of the robot), it goes like 1, 359, 2, 358, but for the sake of the lidar, it spins, 
+so we will do 1,2,3,4,..., then do 340, 341, 342, ..., will adjust specific angle where it start (not final on 340)
+
+then we can combine it into a another list, which alternates it, or, we can compare each angle in each list, then compare which one is a closer angle to 0 or 360
+
+the code would be get 2 lists, one from 1-45 or something, the other goes from 315 to 359, then compare 2 at a time to see if there is a jump,
+(greater than lets say the width of the robot, lets say at least 6 inches), then we compare the jump in list 1 and list 2, see which one is closer to 0 (list 1) or 360 (list 2)
+
+then we return that angle to make it the angle that the robot goes because its a closer heading
+
+(NO) or... we can do a dictionary
+
+if we were to do a dictionary, we have to compare it anyways and we would have to get the key like 1, 359, 2, 358 etc, so i think get the 
+
+
+
+avoiding the obstacle Functions
+
+looks at the closest opening angle to 0, then plans a smooth curve to get to the opening 
+
+always keeps track of the heading then when it fully passes by the obstacle, immediately turn to the heading where the original heading was to look for the person

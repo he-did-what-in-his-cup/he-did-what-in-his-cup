@@ -36,3 +36,6 @@ def in_place_turn(beagle):
 # input: beagle
 def obs_avoid():
     beagle.set_wheel_speed
+
+def get_dists():
+    

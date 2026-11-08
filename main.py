@@ -15,15 +15,18 @@ def setup():
 
 # put control code here, to run repeatedly:
 def loop():
+	beagle.set_wheel_speed('both', 50)
 	global distance
 	dist = beagle.lidar_directions('front')
 	print(func.not_repeat_dist(dist, distance))
-	# beagle.move_distance(10, 'cm', False)
+
+	# when front detects an obstacle, detects the smallest angle of opening, 
+	# put distances in a list, where distance of angle 1, 359, 2, 358, 3, 357, ..., then get the earliest one that is greater than the front dist
 	if dist <= 500:
-		func.in_place_turn(beagle)
+		
+
 	
         
 setup()
 while True:
 	loop()
-
