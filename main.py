@@ -11,6 +11,7 @@ distance = 0
 # put setup code here, to run once:
 def setup():
 	beagle.lidar_power(True)
+	Utils.wait(2) # for the motor to spin up the lidar, the lidar updates around every 0.2 seconds 
 
 
 # put control code here, to run repeatedly:

@@ -38,4 +38,6 @@ def obs_avoid():
     beagle.set_wheel_speed
 
 def get_dists():
+    r_dists = []
+    l_dists = []
     
