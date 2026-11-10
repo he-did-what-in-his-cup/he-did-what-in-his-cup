@@ -20,6 +20,6 @@ def loop():
 setup()
 past_distance = 0
 while True:
-	beagle.move_distance
+	beagle.gyroscope('x')
 	loop()
 
