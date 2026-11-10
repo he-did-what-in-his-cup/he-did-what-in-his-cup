@@ -1,6 +1,6 @@
 from robomation import *
 
-beagle = Beagle(0) # comment out when running
+# beagle = Beagle(0) # comment out when running
 
 # 
 def not_repeat_dist(current_distance, distance):
@@ -10,49 +10,21 @@ def not_repeat_dist(current_distance, distance):
     else:
         return
 
-# if front detect something, then go around an obstacle
-# if the sensor detects something that is less than half a meter infront of the robot, then scans left front and right front, then picks the lower value, 
-# then goes in that direction to go around the obstacle
-
-def in_place_turn(beagle):
-    # take the minimum of the left or the right front of the robot, then choose the closer one because it would be easier to get to
-    lf = beagle.lidar_directions('left_front')
-    rf = beagle.lidar_directions('right_front')
-    front = beagle.lidar_value(0)
-
-    if lf <= rf:
-        # turn until the front is reading greater than 1 meter
-        while front <= 1000:
-            beagle.turn_degree('left', 10)
-            front = beagle.lidar_value(0)
-            print("distance in the front: ", front)
-    else:
-        while front <= 1000:
-            beagle.turn_degree('right', 10)
-            front = beagle.lidar_value(0)
-            print("distance in the front: ", front)
-    print("distance is greater than 1 meter: ", front)
-
-# input: beagle
-def obs_avoid():
-    beagle.set_wheel_speed
-
-def get_dists():
-    r_dists = []
-    l_dists = []# if the front is reading less than 5 meters
-def smooth_avoidance():
+#returns angle and distance of that angle
+def smooth_avoidance(beagle):
     arr = beagle.read(beagle.LIDAR_ARRAY)
-    for i in range(46):
-        if arr[i+1] and arr[359-i] and arr[i] != 65535 and arr[359-i] != 65535:
-            if arr[i] >= 500 or arr[359-i] >= 500:
-                if arr[i] >= arr[359-i]:
-                    speed = 10 * ((180-i)/180) # proportional to the angle
-                    beagle.change_wheel_speed('left', speed)
-                else:
-                    speed = 10 * ((180-i)/180)
-                    beagle.change_wheel_speed('right', speed)
+    for i in range(1,60):
+        if arr[i] and arr[i] != 65535:
+            print(arr[i])
+            # returns the first angle that is greater than 500
+            if arr[i] >= 500:
+                print("distance from angle ", i, "is greater than 500 mm with distance ", arr[i])
+                beagle.turn_degree('right', i)
+                print("turned to degree ", i)
+                break
+                # return i, arr[i]
         else:
-            print("distance is not valid")
+            print("distance error for angle ", i)
 
 #returns the angle error
 def adjust():

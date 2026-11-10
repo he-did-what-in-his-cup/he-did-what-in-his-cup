@@ -5,31 +5,18 @@ beagle = Beagle(0)
 
 accer = 100 # wheel speed is -100 to 100
 
-lp_dist = 0
-rp_dist = 0
 distance = 0
-# put setup code here, to run once:
-def setup():
-	beagle.lidar_power(True)
-	Utils.wait(2) # for the motor to spin up the lidar, the lidar updates around every 0.2 seconds 
+beagle.lidar_power(True)
+Utils.wait(2) # for the motor to spin up the lidar, the lidar updates around every 0.2 seconds 
 
 
-# put control code here, to run repeatedly:
-def loop():
-	beagle.set_wheel_speed('both', 50)
-	global distance
-	dist = beagle.lidar_directions('front')
+while True:
+	beagle.set_wheel_speed('both', 5)
+	dist = round(beagle.lidar_value(0))
 	print(func.not_repeat_dist(dist, distance))
 
 	# when front detects an obstacle, detects the smallest angle of opening, 
 	# put distances in a list, where distance of angle 1, 359, 2, 358, 3, 357, ..., then get the earliest one that is greater than the front dist
 	if dist <= 500:
-		return 
-		
-
-	
-        
-setup()
-while True:
-	beagle.gyroscope('x')
-	loop()
+		func.smooth_avoidance(beagle)
+		break
