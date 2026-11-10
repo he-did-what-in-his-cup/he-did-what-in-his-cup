@@ -24,10 +24,12 @@ def loop():
 	# when front detects an obstacle, detects the smallest angle of opening, 
 	# put distances in a list, where distance of angle 1, 359, 2, 358, 3, 357, ..., then get the earliest one that is greater than the front dist
 	if dist <= 500:
+		return 
 		
 
 	
         
 setup()
 while True:
+	beagle.gyroscope('x')
 	loop()
